@@ -2,37 +2,47 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+table.paleBlueRows {
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #ffffff;
+  width: 90%;
+  height: 200px;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.paleBlueRows td,
+table.paleBlueRows th {
+  border: 1px solid #ffffff;
+  padding: 3px 2px;
+}
+table.paleBlueRows tbody td {
+  font-size: 14px;
+}
+table.paleBlueRows tr:nth-child(even) {
+  background: #d0e4f5;
+}
+table.paleBlueRows thead {
+  background: #0b6fa4;
+  border-bottom: 5px solid #ffffff;
+}
+table.paleBlueRows thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  border-left: 2px solid #ffffff;
+}
+table.paleBlueRows thead th:first-child {
+  border-left: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+table.paleBlueRows tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #d0e4f5;
+  border-top: 3px solid #444444;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table.paleBlueRows tfoot td {
+  font-size: 14px;
 }

@@ -1,10 +1,12 @@
 const express = require('express');
 const College = require('./model/collegeModel')
+const Student = require('./model/studentmodel')
 const parser = require('body-parser');
 
 const app = express();
 const mongoose = require('mongoose');
 const collegeData = require('./data/college_data.json')
+const studentData = require('./data/student_data.json')
 // app.use((req, res, next) => {
 //     res.header("Access-Control-Allow-Origin": "*")
 // })
@@ -17,18 +19,14 @@ app.get('/', (req, res) => {
 })
 
 async function seedServer() {
-    for (const currentCollege of collegeData) {
-        const college = new College({
-            id: currentCollege.id,
-            name: currentCollege.name,
-            year_founded: currentCollege.year_founded,
-            city: currentCollege.city,
-            state: currentCollege.state,
-            country: currentCollege.country,
-            students: currentCollege.students
+    for (const currentStudent of studentData) {
+        const student = new Student({
+            id: currentStudent.id,
+            name: currentStudent.Name,
+            batch: currentStudent.Batch,
         })
         try {
-            const result = await college.save();
+            const result = await student.save();
         } catch (err) {
             console.log(err)
         }
@@ -65,6 +63,15 @@ app.get('/getCollegeById/:id', async (req, res) => {
 app.get('/getCollege', async (req, res) => {
     try {
         const result = await College.find().exec();
+        res.json(result)
+    } catch (err) {
+        res.json({ message: "not found" });
+    }
+
+})
+app.get('/getStudent', async (req, res) => {
+    try {
+        const result = await Student.find().exec();
         res.json(result)
     } catch (err) {
         res.json({ message: "not found" });

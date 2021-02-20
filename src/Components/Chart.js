@@ -1,30 +1,43 @@
-import React, { Component } from 'react';
-
 import { Bar, Line, Pie } from 'react-chartjs-2';
+import React, { useState, useEffect } from 'react'
+export default function Temp(props) {
 
+    const [chartdata, setchartData] = useState([]);
+    const [isLoaded, setLoaded] = useState(false);
 
-class Chart extends Component {
+    useEffect(() => {
 
-    constructor(props) {
-        super(props);
         const data = props.data
         console.log(props.data)
-        this.state = {
-            chartData: {
-                labels: ['a', 'b', 'c'],
-                datasets: [{
-                    label: 'Count',
-                    data: [4, 5, 6
-                    ],
-                }]
-            }
+        const graph = {
+            labels: [],
+            datasets: [{
+                label: 'Count',
+                data: [
+                ],
+                backgroundColor: [
+                ]
+            }]
         }
-    }
-    render() {
-        return (
+        for (var key in props.data) {
+            graph.labels.push(key)
+            graph.datasets[0].data.push(props.data[key])
+            graph.datasets[0].backgroundColor.push('rgba(233,43,12,0.8)')
+        }
+        setLoaded(true)
+        setchartData(graph)
+        console.log(chartdata)
+        // if (props.data.size == 0) setLoaded(1 - isLoaded)
+        // console.log(props.data.size)
+        // data.forEach(element => {
+        //     this.state.chartData.labels.push(element)
+        // });
+    })
+    return (
+        <div>
             <div ClassName='chart'>
                 <Bar
-                    data={this.state.chartData}
+                    data={chartdata}
                     options={{
                         title: {
                             display: true,
@@ -39,8 +52,6 @@ class Chart extends Component {
                     height={100}
                 />
             </div>
-        )
-    }
+        </div>
+    )
 }
-
-export default Chart;
